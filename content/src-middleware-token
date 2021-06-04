@@ -1,0 +1,17 @@
+'use strict'
+
+const jwt = require('jsonwebtoken')
+const { constants: { NOT_AUTHORIZED_RESPONSE } } = require('../helpers')
+
+const JWT_KEY = process.env.JWT_KEY || 'jwtSuperToken'
+
+module.exports.token = async (req, res, next) => {
+  const { authorization } = req.headers
+
+  try {
+    jwt.verify(authorization, JWT_KEY)
+    next()
+  } catch (err) {
+    return res.status(401).send(NOT_AUTHORIZED_RESPONSE)
+  }
+}

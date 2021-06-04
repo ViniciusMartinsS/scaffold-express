@@ -1,0 +1,10 @@
+'use strict'
+
+const NOT_AUTHORIZED_RESPONSE = {
+  status: false,
+  message: 'Invalid Authorization Token'
+}
+
+module.exports = {
+  NOT_AUTHORIZED_RESPONSE
+}

@@ -1,0 +1,5 @@
+'use strict'
+
+const { token } = require('./token.middleware.js')
+
+module.exports = { token }

@@ -1,0 +1,11 @@
+'use strict'
+
+module.exports.errorResponse = err => ({
+  status: false,
+  message: err && err.message || err
+})
+
+module.exports.successResponse = result => ({
+  status: true,
+  result
+})

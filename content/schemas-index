@@ -1,0 +1,22 @@
+'use strict'
+
+module.exports.schemaValidator = (req, entity, schema) => {
+  const payload = definePayload(req)
+  const entitySchema = require(`./${entity}`)[schema]
+
+  const { error } = entitySchema.validate(payload, { abortEarly: false })
+
+  if (error && error.isJoi) {
+    throw new Error(`Payload is not valid: ${error.message}`)
+  }
+
+  return payload
+}
+
+function definePayload (req) {
+  return {
+    ...(req && req.body && { ...req.body }),
+    ...(req && req.params && req.params.id && { ...req.params }),
+    ...(req && req.query && { ...req.query })
+  }
+}

@@ -1,0 +1,52 @@
+'use strict'
+
+const { formatResponse } = require('../helpers')
+const { errorResponse, successResponse } = formatResponse
+
+module.exports.selectHandler = async (req, res, entity) => {
+  try {
+    const { select } = require(`../src/controller/${entity}`)
+
+    const response = await select(req)
+    return res.send(successResponse(response))
+  } catch (error) {
+    return res.status(500)
+      .send(errorResponse(err))
+  }
+}
+
+module.exports.createHandler = async (req, res, entity) => {
+  try {
+    const { create } = require(`../src/controller/${entity}`)
+
+    const response = await create(req)
+    return res.send(successResponse(response))
+  } catch (error) {
+    return res.status(500)
+      .send(errorResponse(err))
+  }
+}
+
+module.exports.updateHandler = async (req, res, entity) => {
+  try {
+    const { update } = require(`../src/controller/${entity}`)
+
+    const response = await update(req)
+    return res.send(successResponse(response))
+  } catch (error) {
+    return res.status(500)
+      .send(errorResponse(err))
+  }
+}
+
+module.exports.removeHandler = async (req, res, entity) => {
+  try {
+    const { remove } = require(`../src/controller/${entity}`)
+
+    const response = await remove(req)
+    return res.send(successResponse(response))
+  } catch (error) {
+    return res.status(500)
+      .send(errorResponse(err))
+  }
+}

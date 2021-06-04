@@ -1,0 +1,27 @@
+'use strict'
+
+const {{entity}}Service = require('../service/{{entity}}.service')
+const { constants: { SCHEMA } } = require('../../helpers')
+const { schemaValidator } = require('../../schemas')
+
+const ENTITY = '{{entity}}'
+
+module.exports.select = async req => {
+  const params = schemaValidator(req, ENTITY, SCHEMA.select)
+  return {{entity}}Service.select(params)
+}
+
+module.exports.create = async req => {
+  const params = schemaValidator(req, ENTITY, SCHEMA.create)
+  return {{entity}}Service.create(params)
+}
+
+module.exports.update = async req => {
+  const params = schemaValidator(req, ENTITY, SCHEMA.update)
+  return {{entity}}Service.update(params)
+}
+
+module.exports.remove = async req => {
+  const params = schemaValidator(req, ENTITY, SCHEMA.remove)
+  return {{entity}}Service.remove(params)
+}

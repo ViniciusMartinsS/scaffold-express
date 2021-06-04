@@ -1,0 +1,17 @@
+'use strict'
+
+module.exports.select = async params => {
+  /* YOUR SELECT RULES GOES HERE */
+}
+
+module.exports.create = async params => {
+  /* YOUR CREATE RULES GOES HERE */
+}
+
+module.exports.update = async params => {
+  /* YOUR UPDATE RULES GOES HERE */
+}
+
+module.exports.remove = async params => {
+  /* YOUR REMOVE RULES GOES HERE */
+}
