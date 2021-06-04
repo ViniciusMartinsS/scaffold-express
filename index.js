@@ -4,12 +4,13 @@ const { execSync } = require('child_process')
 const { writeFileSync, mkdirSync, readFileSync, readdirSync, rmSync } = require('fs')
 const { prompt } = require('inquirer')
 const cliProgress = require('cli-progress')
-const chalk = require('chalk');
-const error = chalk.bold.red;
-const success = chalk.bold.blueBright;
-const peace = chalk.bold.white;
 
-const { commands, files, folders, QUESTIONS, ABORT_OPTIONS } = require('./configuration')
+const chalk = require('chalk')
+const error = chalk.bold.red
+const success = chalk.bold.blueBright
+const peace = chalk.bold.white
+
+const { commands, folders, QUESTIONS, ABORT_OPTIONS } = require('./configuration')
 const { exit } = require('process')
 
 ;(async () => {
@@ -17,7 +18,7 @@ const { exit } = require('process')
 
   if (ABORT_OPTIONS.indexOf(abort) > 0) {
     console.log(error(`\n> Aborting! See ya. 👋\n`))
-    exit()
+    exit(200)
   }
 
   console.log(peace('\n>'), success(`Scaffolding Express Project:`), peace(`${project.toUpperCase()} 🤯`))
@@ -28,9 +29,8 @@ const { exit } = require('process')
     entities.split(',').forEach(entity => setEntityCustomContent(entity))
   }
 
-  createDirectory(workDir)
-  addContent(workDir, files)
-  createSkeleton(workDir)
+  mkdirSync(workDir)
+  createDirectoryStructure(workDir, folders)
   installDependencies(workDir)
   clearTmpFile()
 
@@ -58,53 +58,24 @@ function installDependencies(folder) {
   bar.stop()
 }
 
-function createSkeleton (workDir) {
-  console.log(peace('\n01.'), success(`Creating Directories and its files`), error(`It goes by so F A S T 🏎️\n`))
-
-  const bar = setupBar(Object.keys(folders).length)
-
-  Object.keys(folders)
-    .forEach((folder, index) => {
-      const newDir = `${workDir}/${folder}`
-
-      createDirectory(newDir)
-
-      const content = folders[folder]
-      if (!content || !content.length) {
-        return
-      }
-
-      addContent(newDir, content)
-
-      bar.update(index + 1)
-    })
-
-    bar.stop()
-}
-
-function addContent (dir, content) {
-  if (!content || !content.length) {
-    return;
-  }
+function createDirectoryStructure (dir, content) {
+  if (!content || !content.length) return
 
   content.forEach(info => {
     if (info.type === 'file') {
-      addFile(info.name, dir, info.content)
-      return
+      return createFileAndAddContent(info.name, dir, info.content)
     }
 
     if (info.type === 'folder') {
-      createDirectory(`${dir}/${info.name}`)
-      addContent(`${dir}/${info.name}`, info.content)
+      mkdirSync(`${dir}/${info.name}`)
+      return createDirectoryStructure(`${dir}/${info.name}`, info.content)
     }
+
+    throw new Error('Type does not exist!')
   })
 }
 
-function createDirectory(path) {
-  mkdirSync(path)
-}
-
-function addFile (file, dir, contentPath) {
+function createFileAndAddContent (file, dir, contentPath) {
   const content = readFileSync(`./content/${contentPath}`, { encoding: 'utf-8' })
   writeFileSync(`${dir}/${file}`, content, { encoding: 'utf-8' })
 }
@@ -116,17 +87,16 @@ function setupBar(length) {
 }
 
 function setEntityCustomContent (entity) {
-  if (!entity) {
-    return
-  }
+  if (!entity) return
 
-  folders.src = folders.src
+  const index = folders.findIndex(({ name }) => name === 'src')
+  folders[index].content = folders[index].content
     .map(folder => {
       let fileName = folder.name
 
       if (folder.name === 'controller') {
         fileName = `tmp-${folder.name}-${entity}`
-        createFileContentFromBase (entity, folder.name)
+        createFileContentFromBase(entity, folder.name)
       }
 
       const content = [{ name: `${entity}.${folder.name}.js`, content: fileName, type: 'file' }]

@@ -93,16 +93,31 @@ const src = [{
   type: `folder`
 }]
 
-const folders = {
-  helpers,
-  middleware,
-  routes,
-  schemas,
-  src,
-  srv
-}
-
-const files = [{
+const folders = [{
+  name: 'helpers',
+  content: helpers,
+  type: `folder`
+},{
+  name: 'middleware',
+  content: middleware,
+  type: `folder`
+},{
+  name: 'routes',
+  content: routes,
+  type: `folder`
+},{
+  name: 'schemas',
+  content: schemas,
+  type: `folder`
+},{
+  name: 'src',
+  content: src,
+  type: `folder`
+},{
+  name: 'srv',
+  content: srv,
+  type: `folder`
+},{
   name: `veja.js`,
   content: `schemas-index`,
   type: `file`
@@ -111,7 +126,6 @@ const files = [{
 module.exports = {
   commands,
   folders,
-  files,
 
   ABORT_OPTIONS,
   QUESTIONS
