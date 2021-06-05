@@ -1,0 +1,67 @@
+[{
+  "name": "helpers",
+  "content": [{
+    "name": "index.js",
+    "content": "helpers-index",
+    "type": "file"
+  }, {
+    "name": "constant.helpers.js",
+    "content": "helpers-constant",
+    "type": "file"
+  }, {
+    "name": "response.helpers.js",
+    "content": "helpers-response",
+    "type": "file"
+  }],
+  "type": "folder"
+}, {
+  "name": "middleware",
+  "content": [{
+    "name": "index.js",
+    "content": "src-middleware-index",
+    "type": "file"
+  }, {
+    "name": "token.middleware.js",
+    "content": "src-middleware-token",
+    "type": "file"
+  }],
+  "type": "folder"
+}, {
+  "name": "routes",
+  "content": [{
+    "name": "default-handler.routes.js",
+    "content": "routes-handler",
+    "type": "file"
+  }],
+  "type": "folder"
+}, {
+  "name": "schemas",
+  "content": [{
+    "name": "index.js",
+    "content": "schemas-index",
+    "type": "file"
+  }],
+  "type": "folder"
+}, {
+  "name": "src",
+  "content": [{
+    "name": "controller",
+    "type": "folder"
+  }, {
+    "name": "service",
+    "type": "folder"
+  }],
+  "type": "folder"
+}, {
+  "name": "srv",
+  "content": [{
+    "name": "index.js",
+    "content": "srv-index",
+    "type": "file"
+  }],
+  "type": "folder"
+}, {
+  "name": "veja.js",
+  "content": "schemas-index",
+  "type": "file"
+}]

@@ -1,5 +1,31 @@
 `use strict`;
 
+const ABORT_MESSAGE = [
+  { color: 'red', content: 'Aborting!' },
+  { color: 'white', content: 'See ya. 👋' }
+]
+
+const START_MESSAGE = project => [
+  { color: 'blue', content: 'Scaffolding Express Project:' },
+  { color: 'white', content: `${project.toUpperCase()} 🤯` }
+]
+
+const FIRST_STEP_MESSAGE = [
+  { color: 'white', content: '01.' },
+  { color: 'blue', content: 'Creating Directories and its files' },
+  { color: 'white', content: `It goes by so F A S T 🏎️\n` }
+]
+
+const SECOND_STEP_MESSAGE = [
+  { color: 'white', content: '02.' },
+  { color: 'blue', content: 'Installing Project Dependencies!' },
+  { color: 'white', content: `It might take a while ⏱️\n` }
+]
+
+const END_MESSAGE = [
+  { color: 'blue', content: 'You are good to go! Have a good work! 💻\n' },
+]
+
 const ABORT_OPTIONS = [ `Yes, I do!`, `No, I do not!` ];
 const QUESTIONS = [{
   type: `input`,
@@ -123,10 +149,19 @@ const folders = [{
   type: `file`
 }]
 
+const REGEX = /{{entity}}/g
+
 module.exports = {
   commands,
   folders,
 
   ABORT_OPTIONS,
-  QUESTIONS
+  QUESTIONS,
+  REGEX,
+
+  START_MESSAGE,
+  ABORT_MESSAGE,
+  FIRST_STEP_MESSAGE,
+  SECOND_STEP_MESSAGE,
+  END_MESSAGE
 }
