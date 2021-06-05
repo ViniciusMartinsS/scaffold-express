@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "export NODE_ENV=test && nyc --reporter html --reporter text -t coverage --check-coverage --lines 90 --per-file mocha -S test/*.test.js --timeout 99999",
+    "test": "nyc --reporter html --reporter text -t coverage --check-coverage --lines 90 --per-file mocha -S test/*.test.js --timeout 99999",
     "prepare": "husky install"
   },
   "keywords": [],
