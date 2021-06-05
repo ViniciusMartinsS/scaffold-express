@@ -49,7 +49,7 @@ const QUESTIONS = [{
 }]
 
 /* COMMANDS SECTION */
-const FOLDERS = JSON.parse(readFileSync(`./structure.json`, ENCONDING))
+const FOLDERS = JSON.parse(readFileSync(`${__dirname}/structure.json`, ENCONDING))
 
 const base = `npm i`
 const dev = `--save-dev`
@@ -77,10 +77,13 @@ const COMMANDS = [
   `${base} nyc ${dev}`
 ]
 
+const CONTENT_PREFIX = `${__dirname}/content`
+
 module.exports = {
   ABORT_OPTIONS,
   ABORT_MESSAGE,
   COMMANDS,
+  CONTENT_PREFIX,
   ENCONDING,
   END_MESSAGE,
   FIRST_STEP_MESSAGE,

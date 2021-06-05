@@ -1,12 +1,12 @@
 `use strict`
 
 const { readFileSync, writeFileSync } = require(`fs`)
-const { ENCONDING, FOLDERS } = require(`../configuration`)
+const { CONTENT_PREFIX, ENCONDING, FOLDERS } = require(`../configuration`)
 
 const REGEX = /{{entity}}/g
 
 module.exports.handleFileContent = (file, dir, contentPath) => {
-  const content = readFileSync(`./content/${contentPath}`, ENCONDING)
+  const content = readFileSync(`${CONTENT_PREFIX}/${contentPath}`, ENCONDING)
   writeFileSync(`${dir}/${file}`, content, ENCONDING)
 }
 
@@ -34,6 +34,6 @@ function executeSetEntityCustomContent (entity) {
 }
 
 function createFileContentFromBase (entity, folder) {
-  const fileContent = readFileSync(`./content/${folder}`, ENCONDING).replace(REGEX, entity)
-  writeFileSync(`./content/tmp-${folder}-${entity}`, fileContent, ENCONDING)
+  const fileContent = readFileSync(`${CONTENT_PREFIX}/${folder}`, ENCONDING).replace(REGEX, entity)
+  writeFileSync(`${CONTENT_PREFIX}/tmp-${folder}-${entity}`, fileContent, ENCONDING)
 }
