@@ -13,6 +13,9 @@ module.exports.info = messages => {
   if (!messages || !Array.isArray(messages) || !messages.length) return
 
   let content = ``
-  messages.forEach(message => content = `${content} ${COLORS[message.color](message.content)}`.trim())
+  messages.forEach(message => {
+    content = `${content} ${COLORS[message.color](message.content)}`.trim()
+  })
+
   console.log(COLORS.white(`\n>`), content)
 }
