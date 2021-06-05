@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "export NODE_ENV=test && nyc --reporter html --reporter text -t coverage --check-coverage --lines 90 --per-file mocha -S test/*.test.js --timeout 99999",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -14,6 +14,7 @@
     "node": ">=8.10.0"
   },
   "dependencies": {
+    "chai": "^4.3.4",
     "chalk": "^4.1.1",
     "cli-progress": "^3.9.0",
     "eslint": "^5.16.0",
@@ -23,9 +24,13 @@
     "eslint-plugin-node": "^9.0.1",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "inquirer": "^8.1.0"
+    "inquirer": "^8.1.0",
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0"
   },
   "devDependencies": {
-    "husky": "^6.0.0"
+    "husky": "^6.0.0",
+    "inquirer-test": "^2.0.1",
+    "strip-ansi": "^2.0.1"
   }
 }

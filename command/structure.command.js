@@ -28,8 +28,6 @@ function executeProjectStructure (dir, content, instanceBar) {
       mkdirSync(`${dir}/${info.name}`)
       return executeProjectStructure(`${dir}/${info.name}`, info.content)
     }
-
-    throw new Error(`Type does not exist!`)
   })
 
   instanceBar && bar.stopBar(instanceBar)
