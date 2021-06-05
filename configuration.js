@@ -3,31 +3,43 @@
 const { readFileSync } = require(`fs`)
 const ENCONDING = { encoding: `utf-8` }
 
+/* ENUM SECTION */
+const ASSET_TYPE_ENUM = Object.freeze({
+  file: `file`,
+  folder: `folder`
+})
+
+const COLOR_ENUM = Object.freeze({
+  blue: `blue`,
+  red: `red`,
+  white: `white`
+})
+
 /* LOGS SECTION */
 const ABORT_MESSAGE = [
-  { color: `red`, content: `Aborting!` },
-  { color: `white`, content: `See ya. 👋` }
+  { color: COLOR_ENUM.red, content: `Aborting!` },
+  { color: COLOR_ENUM.white, content: `See ya. 👋` }
 ]
 
 const START_MESSAGE = project => [
-  { color: `blue`, content: `Scaffolding Express Project:` },
-  { color: `white`, content: `${project.toUpperCase()} 🤯` }
+  { color: COLOR_ENUM.blue, content: `Scaffolding Express Project:` },
+  { color: COLOR_ENUM.white, content: `${project.toUpperCase()} 🤯` }
 ]
 
 const FIRST_STEP_MESSAGE = [
-  { color: `white`, content: `01.` },
-  { color: `blue`, content: `Creating Directories and its files` },
-  { color: `white`, content: `It goes by so F A S T 🏎️\n` }
+  { color: COLOR_ENUM.white, content: `01.` },
+  { color: COLOR_ENUM.blue, content: `Creating Directories and its files` },
+  { color: COLOR_ENUM.white, content: `It goes by so F A S T 🏎️\n` }
 ]
 
 const SECOND_STEP_MESSAGE = [
-  { color: `white`, content: `02.` },
-  { color: `blue`, content: `Installing Project Dependencies!` },
-  { color: `white`, content: `It might take a while ⏱️\n` }
+  { color: COLOR_ENUM.white, content: `02.` },
+  { color: COLOR_ENUM.blue, content: `Installing Project Dependencies!` },
+  { color: COLOR_ENUM.white, content: `It might take a while ⏱️\n` }
 ]
 
 const END_MESSAGE = [
-  { color: `blue`, content: `You are good to go! Have a good work! 💻\n` },
+  { color: COLOR_ENUM.blue, content: `You are good to go! Have a good work! 💻\n` },
 ]
 
 /* QUESTIONS/INPUT SECTION */
@@ -82,6 +94,8 @@ const CONTENT_PREFIX = `${__dirname}/content`
 module.exports = {
   ABORT_OPTIONS,
   ABORT_MESSAGE,
+  ASSET_TYPE_ENUM,
+  COLOR_ENUM,
   COMMANDS,
   CONTENT_PREFIX,
   ENCONDING,

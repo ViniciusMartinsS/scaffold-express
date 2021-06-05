@@ -1,11 +1,12 @@
 `use strict`
 
 const chalk = require(`chalk`)
+const { COLOR_ENUM } = require(`../configuration`)
 
 const COLORS = {
-  blue: chalk.bold.blueBright,
-  white: chalk.bold.white,
-  red: chalk.bold.redBright
+  [COLOR_ENUM.blue]: chalk.bold.blueBright,
+  [COLOR_ENUM.red]: chalk.bold.redBright,
+  [COLOR_ENUM.white]: chalk.bold.whiteBright
 }
 
 module.exports.info = messages => {

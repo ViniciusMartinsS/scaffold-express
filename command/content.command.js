@@ -1,7 +1,7 @@
 `use strict`
 
 const { readFileSync, writeFileSync } = require(`fs`)
-const { CONTENT_PREFIX, ENCONDING, FOLDERS } = require(`../configuration`)
+const { ASSET_TYPE_ENUM, CONTENT_PREFIX, ENCONDING, FOLDERS } = require(`../configuration`)
 
 const REGEX = /{{entity}}/g
 
@@ -13,7 +13,8 @@ module.exports.handleFileContent = (file, dir, contentPath) => {
 module.exports.setEntityCustomContent = entities => {
   if (!entities || !entities.length) return
 
-  entities.split(`,`).forEach(entity => executeSetEntityCustomContent(entity))
+  entities.split(`,`)
+    .forEach(entity => executeSetEntityCustomContent(entity))
 }
 
 function executeSetEntityCustomContent (entity) {
@@ -28,7 +29,7 @@ function executeSetEntityCustomContent (entity) {
         createFileContentFromBase(entity, folder.name)
       }
 
-      const content = [{ name: `${entity}.${folder.name}.js`, content: fileName, type: `file` }]
+      const content = [{ name: `${entity}.${folder.name}.js`, content: fileName, type: ASSET_TYPE_ENUM.file }]
       return { ...folder, ...(folder.content && { content: [ ...folder.content, ...content ] } || { content }) }
     })
 }
