@@ -1,4 +1,4 @@
-`use strict`
+'use strict'
 
 const bar = require(`./bar.helper`)
 const log = require(`./log.helper`)

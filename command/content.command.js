@@ -1,4 +1,4 @@
-`use strict`
+'use strict'
 
 const { readFileSync, writeFileSync } = require(`fs`)
 const { ASSET_TYPE_ENUM, CONTENT_PREFIX, ENCONDING, FOLDERS } = require(`../configuration`)
@@ -29,7 +29,7 @@ function executeSetEntityCustomContent (entity) {
         createFileContentFromBase(entity, folder.name)
       }
 
-      const content = [{ name: `${entity}.${folder.name}.js`, content: fileName, type: ASSET_TYPE_ENUM.file }]
+      const content = [ { name: `${entity}.${folder.name}.js`, content: fileName, type: ASSET_TYPE_ENUM.file } ]
       return { ...folder, ...(folder.content && { content: [ ...folder.content, ...content ] } || { content }) }
     })
 }

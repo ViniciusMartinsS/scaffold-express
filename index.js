@@ -1,4 +1,4 @@
-`use strict`
+'use strict'
 
 const { exit } = require(`process`)
 const { mkdirSync } = require(`fs`)

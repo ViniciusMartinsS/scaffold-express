@@ -1,4 +1,4 @@
-`use strict`
+'use strict'
 
 const { clearTmpFile } = require(`./cleanup.command`)
 const { handleProjectStructure } = require(`./structure.command`)

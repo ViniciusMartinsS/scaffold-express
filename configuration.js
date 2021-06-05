@@ -1,4 +1,4 @@
-`use strict`
+'use strict'
 
 const { readFileSync } = require(`fs`)
 const ENCONDING = { encoding: `utf-8` }
@@ -39,26 +39,26 @@ const SECOND_STEP_MESSAGE = [
 ]
 
 const END_MESSAGE = [
-  { color: COLOR_ENUM.blue, content: `You are good to go! Have a good work! 💻\n` },
+  { color: COLOR_ENUM.blue, content: `You are good to go! Have a good work! 💻\n` }
 ]
 
 /* QUESTIONS/INPUT SECTION */
 const ABORT_OPTIONS = [ `Yes, I do!`, `No, I do not!` ]
-const QUESTIONS = [{
+const QUESTIONS = [ {
   type: `input`,
   name: `project`,
   message: `What's your project name?`,
   validate: input => !input ? `Please, provide a valid project name! 😑` : true
-},{
+}, {
   type: `input`,
   name: `entities`,
   message: `What are the entities of it? (Example: user,task):`
-},{
+}, {
   type: `list`,
   name: `abort`,
   message: `Do you wanna proceed with the project scaffolding? 🧐`,
   choices: ABORT_OPTIONS
-}]
+} ]
 
 /* COMMANDS SECTION */
 const FOLDERS = JSON.parse(readFileSync(`${__dirname}/structure.json`, ENCONDING))

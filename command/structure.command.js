@@ -1,4 +1,4 @@
-`use strict`
+'use strict'
 
 const { mkdirSync } = require(`fs`)
 const { handleFileContent } = require(`./content.command`)
