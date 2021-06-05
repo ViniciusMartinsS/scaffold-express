@@ -1,25 +1,19 @@
-'use strict'
+`use strict`
 
-const { exit } = require('process')
-const { mkdirSync } = require('fs')
-const { prompt } = require('inquirer')
+const { exit } = require(`process`)
+const { mkdirSync } = require(`fs`)
+const { prompt } = require(`inquirer`)
 
+const CMD = require(`./command`)
+const { log } = require(`./helpers`)
 const {
   ABORT_OPTIONS,
-  QUESTIONS,
   ABORT_MESSAGE,
   END_MESSAGE,
-  START_MESSAGE,
-  folders
-} = require('./configuration')
-
-const {
-  clearTmpFile,
-  handleProjectStructure,
-  installDependencies,
-  log,
-  setEntityCustomContent
-} = require('./functions')
+  QUESTIONS,
+  FOLDERS,
+  START_MESSAGE
+} = require(`./configuration`)
 
 ;(async () => {
   const { abort, entities, project } = await prompt(QUESTIONS)
@@ -29,16 +23,17 @@ const {
     exit(200)
   }
 
-  const message = START_MESSAGE(project)
-  log.info(message)
+  const initialMessage = START_MESSAGE(project)
+  log.info(initialMessage)
 
   const workDir = `./${project}`
 
   mkdirSync(workDir)
-  setEntityCustomContent(entities)
-  handleProjectStructure(workDir, folders)
-  installDependencies(workDir)
-  clearTmpFile()
+
+  CMD.setEntityCustomContent(entities)
+  CMD.handleProjectStructure(workDir, FOLDERS)
+  CMD.installDependencies(workDir)
+  CMD.clearTmpFile()
 
   log.info(END_MESSAGE)
 })()

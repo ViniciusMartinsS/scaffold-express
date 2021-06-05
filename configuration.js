@@ -1,32 +1,37 @@
-`use strict`;
+`use strict`
 
+const { readFileSync } = require(`fs`)
+const ENCONDING = { encoding: `utf-8` }
+
+/* LOGS SECTION */
 const ABORT_MESSAGE = [
-  { color: 'red', content: 'Aborting!' },
-  { color: 'white', content: 'See ya. 👋' }
+  { color: `red`, content: `Aborting!` },
+  { color: `white`, content: `See ya. 👋` }
 ]
 
 const START_MESSAGE = project => [
-  { color: 'blue', content: 'Scaffolding Express Project:' },
-  { color: 'white', content: `${project.toUpperCase()} 🤯` }
+  { color: `blue`, content: `Scaffolding Express Project:` },
+  { color: `white`, content: `${project.toUpperCase()} 🤯` }
 ]
 
 const FIRST_STEP_MESSAGE = [
-  { color: 'white', content: '01.' },
-  { color: 'blue', content: 'Creating Directories and its files' },
-  { color: 'white', content: `It goes by so F A S T 🏎️\n` }
+  { color: `white`, content: `01.` },
+  { color: `blue`, content: `Creating Directories and its files` },
+  { color: `white`, content: `It goes by so F A S T 🏎️\n` }
 ]
 
 const SECOND_STEP_MESSAGE = [
-  { color: 'white', content: '02.' },
-  { color: 'blue', content: 'Installing Project Dependencies!' },
-  { color: 'white', content: `It might take a while ⏱️\n` }
+  { color: `white`, content: `02.` },
+  { color: `blue`, content: `Installing Project Dependencies!` },
+  { color: `white`, content: `It might take a while ⏱️\n` }
 ]
 
 const END_MESSAGE = [
-  { color: 'blue', content: 'You are good to go! Have a good work! 💻\n' },
+  { color: `blue`, content: `You are good to go! Have a good work! 💻\n` },
 ]
 
-const ABORT_OPTIONS = [ `Yes, I do!`, `No, I do not!` ];
+/* QUESTIONS/INPUT SECTION */
+const ABORT_OPTIONS = [ `Yes, I do!`, `No, I do not!` ]
 const QUESTIONS = [{
   type: `input`,
   name: `project`,
@@ -43,10 +48,13 @@ const QUESTIONS = [{
   choices: ABORT_OPTIONS
 }]
 
+/* COMMANDS SECTION */
+const FOLDERS = JSON.parse(readFileSync(`./structure.json`, ENCONDING))
+
 const base = `npm i`
 const dev = `--save-dev`
 
-const commands = [
+const COMMANDS = [
   `npm init -y`,
   `${base} joi`,
   `${base} bcrypt`,
@@ -69,99 +77,15 @@ const commands = [
   `${base} nyc ${dev}`
 ]
 
-const helpers = [{
-  name: `index.js`,
-  content: `helpers-index`,
-  type: `file`
-}, {
-  name: `constant.helpers.js`,
-  content: `helpers-constant`,
-  type: `file`
-},{
-  name: `response.helpers.js`,
-  content: `helpers-response`,
-  type: `file`
-}]
-
-const middleware = [{
-  name: `index.js`,
-  content: `src-middleware-index`,
-  type: `file`
-}, {
-  name: `token.middleware.js`,
-  content: `src-middleware-token`,
-  type: `file`
-}]
-
-const routes = [{
-  name: `default-handler.routes.js`,
-  content: `routes-handler`,
-  type: `file`
-}]
-
-const schemas = [{
-  name: `index.js`,
-  content: `schemas-index`,
-  type: `file`
-}]
-
-const srv = [{
-    name: `index.js`,
-    content: `srv-index`,
-    type: `file`
-}]
-
-const src = [{
-  name: `controller`,
-  type: `folder`
-}, {
-  name: `service`,
-  type: `folder`
-}]
-
-const folders = [{
-  name: 'helpers',
-  content: helpers,
-  type: `folder`
-},{
-  name: 'middleware',
-  content: middleware,
-  type: `folder`
-},{
-  name: 'routes',
-  content: routes,
-  type: `folder`
-},{
-  name: 'schemas',
-  content: schemas,
-  type: `folder`
-},{
-  name: 'src',
-  content: src,
-  type: `folder`
-},{
-  name: 'srv',
-  content: srv,
-  type: `folder`
-},{
-  name: `veja.js`,
-  content: `schemas-index`,
-  type: `file`
-}]
-
-const REGEX = /{{entity}}/g
-
 module.exports = {
-  commands,
-  folders,
-
   ABORT_OPTIONS,
-  QUESTIONS,
-  REGEX,
-
-  START_MESSAGE,
   ABORT_MESSAGE,
+  COMMANDS,
+  ENCONDING,
+  END_MESSAGE,
   FIRST_STEP_MESSAGE,
+  FOLDERS,
+  QUESTIONS,
   SECOND_STEP_MESSAGE,
-  END_MESSAGE
+  START_MESSAGE
 }

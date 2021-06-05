@@ -1,6 +1,6 @@
-'use strict'
+`use strict`
 
-const { readdirSync, rmSync } = require('fs')
+const { readdirSync, rmSync } = require(`fs`)
 
 module.exports.clearTmpFile = () => {
   const dir = `./content`

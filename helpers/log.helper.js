@@ -1,6 +1,6 @@
-'use strict'
+`use strict`
 
-const chalk = require('chalk')
+const chalk = require(`chalk`)
 
 const COLORS = {
   blue: chalk.bold.blueBright,
@@ -9,7 +9,9 @@ const COLORS = {
 }
 
 module.exports.info = messages => {
-  let content = ''
+  if (!messages || !Array.isArray(messages) || !messages.length) return
+
+  let content = ``
   messages.forEach(message => content = `${content} ${COLORS[message.color](message.content)}`.trim())
-  console.log(COLORS.white('\n>'), content)
+  console.log(COLORS.white(`\n>`), content)
 }

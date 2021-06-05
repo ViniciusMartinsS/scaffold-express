@@ -1,6 +1,6 @@
-'use strict'
+`use strict`
 
-const cliProgress = require('cli-progress')
+const cliProgress = require(`cli-progress`)
 
 module.exports.setupBar = length => {
   const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic)

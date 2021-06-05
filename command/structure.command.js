@@ -1,10 +1,9 @@
-'use strict'
+`use strict`
 
-const { mkdirSync } = require('fs')
-const { handleFileContent } = require('./content.functions')
-const bar = require('./bar.functions')
-const log = require('./log.functions')
-const { FIRST_STEP_MESSAGE } = require('../configuration')
+const { mkdirSync } = require(`fs`)
+const { handleFileContent } = require(`./content.command`)
+const { bar, log } = require(`../helpers`)
+const { FIRST_STEP_MESSAGE } = require(`../configuration`)
 
 let count = 0
 
@@ -21,16 +20,16 @@ function executeProjectStructure (dir, content, instanceBar) {
   content.forEach(info => {
     instanceBar && bar.updateBar(instanceBar, ++count)
 
-    if (info.type === 'file') {
+    if (info.type === `file`) {
       return handleFileContent(info.name, dir, info.content)
     }
 
-    if (info.type === 'folder') {
+    if (info.type === `folder`) {
       mkdirSync(`${dir}/${info.name}`)
       return executeProjectStructure(`${dir}/${info.name}`, info.content)
     }
 
-    throw new Error('Type does not exist!')
+    throw new Error(`Type does not exist!`)
   })
 
   instanceBar && bar.stopBar(instanceBar)
